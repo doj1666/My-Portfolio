@@ -5,7 +5,7 @@ const About = () => (
         <img src="/me.jpg" alt="Profile Picture" className="profile-img" />
         <div className="about-text">
           <h2>About Me</h2>
-          <p>Im Diojeh, a full-stack developer focused on building modern, responsive, and user-friendly web applications. I work with React, HTML, CSS, and other technologies to turn ideas into functional digital experiences. Im passionate about continuous learning and contributing to meaningful projects.</p>
+          <p>I'm Diojeh, a full-stack developer focused on building modern, responsive, and user-friendly web applications. I work with React, HTML, CSS, and other technologies to turn ideas into functional digital experiences. Im passionate about continuous learning and contributing to meaningful projects.</p>
           <p>When not coding, I enjoy learning new technologies and contributing to open source.</p>
           <div className="about-social-links">
             <a href="https://github.com/doj1666" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
