@@ -29,13 +29,9 @@ This project is my personal portfolio. It shows who I am, the projects I have bu
 ## Local Setup
 
 ```bash
-git clone https://github.com/doj1666/My-Portfolio.git
-cd My-Portfolio
 npm install
 npm run dev
 ```
-
-Open `http://localhost:5173`.
 
 ## Project Structure
 
