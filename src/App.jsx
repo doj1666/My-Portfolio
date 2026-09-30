@@ -1,25 +1,29 @@
 import { useEffect } from 'react'
 import Nav from './components/Nav'
 import Home from './components/Home'
-import About from './components/About.jsx'
-import Projects from './components/Projects.jsx'
-import Services from './components/Services.jsx'
-import Footer from './components/Footer.jsx'
-
+import About from './components/About'
+import Projects from './components/Projects'
+import Services from './components/Services'
+import Contact from './components/Contact'
+import Footer from './components/Footer'
 
 function App() {
   useEffect(() => {
-    // smooth scroll para sa navs
-    const links = document.querySelectorAll('a[href^="#"]')
-    links.forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault()
-        const target = document.querySelector(this.getAttribute('href'))
-        if (target) {
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    function revealSectionsInView() {
+      const hiddenSections = document.querySelectorAll('.reveal:not(.is-visible)')
+
+      hiddenSections.forEach((section) => {
+        const sectionTop = section.getBoundingClientRect().top
+        if (sectionTop < window.innerHeight * 0.9) {
+          section.classList.add('is-visible')
         }
       })
-    })
+    }
+
+    revealSectionsInView()
+    window.addEventListener('scroll', revealSectionsInView)
+
+    return () => window.removeEventListener('scroll', revealSectionsInView)
   }, [])
 
   return (
@@ -29,11 +33,10 @@ function App() {
       <About />
       <Projects />
       <Services />
+      <Contact />
       <Footer />
     </>
   )
-
 }
 
 export default App
-

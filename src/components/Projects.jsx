@@ -1,43 +1,59 @@
+import awesomeImage from './awesome.jpg'
+import uiImage from './ui.jpg'
+import bakanteImage from './bakante.png'
+import ProjectCard from './ProjectCard'
 
+const projects = [
+  {
+    title: 'Awesome Todos',
+    image: awesomeImage,
+    imageAlt: 'Awesome Project',
+    description: 'A full-stack todo app where users can add, complete, and delete tasks. Built with React, Node.js, Express, and MongoDB.',
+    tags: ['React', 'Node.js', 'Express', 'MongoDB'],
+    liveUrl: 'https://awesome-todos-nzoy.onrender.com',
+    githubUrl: '',
+  },
+  {
+    title: 'UI Design Project',
+    image: uiImage,
+    imageAlt: 'UI Design Project',
+    description: 'A design-focused UI challenge that demonstrates my ability to translate concepts into clean, user-friendly interfaces.',
+    tags: ['Figma'],
+    liveUrl: 'https://www.figma.com/design/DB8FoeFP83eZ2Be3TZkBv9/Untitled?node-id=0-1&t=E9Z053mGvv0EEG7Y-1',
+    githubUrl: '',
+  },
+  {
+    title: 'Bakante',
+    image: bakanteImage,
+    imageAlt: 'Portfolio Project',
+    description: 'A community-based web platform that connects local job seekers with nearby part-time and on-demand work opportunities, making hiring and job searching faster, easier, and more reliable.',
+    tags: ['Figma'],
+    liveUrl: 'https://www.figma.com/proto/5fdvEMZNP3eJESBf8mbNwd/Bakante?node-id=1-2&starting-point-node-id=1%3A2&t=fd8xCImfrS8bEEPd-1',
+    githubUrl: '',
+  },
+  {
+    title: 'Portfolio Website',
+    image: '/preview.png',
+    imageAlt: 'Portfolio Website',
+    description: 'This personal portfolio site, built with React and Vite and deployed on Vercel.',
+    tags: ['React', 'Vite', 'Vercel'],
+    liveUrl: 'https://diojeh.vercel.app/',
+  },
+]
 
-import awesomeImage from './awesome.jpg';
-import uiImage from './ui.jpg';
-import bakanteImage from './bakante.png';
-
-const Projects = () => (
-  <section id="projects">
-    <div className="container">
-      <h2>Projects</h2>
-      <div className="cards">
-        <div className="card">
-          <img src={awesomeImage} alt="Awesome Project" className="project-img" />
-          <div className="card-content">
-            <h3>Awesome Todos</h3>
-            <p>A full-stack todo app where users can add, complete, and delete tasks. Built with React, Node.js, Express, and MongoDB.</p>
-
-          </div>
+function Projects() {
+  return (
+    <section id="projects" className="section projects-section">
+      <div className="container">
+        <h2 className="section-title">Projects</h2>
+        <div className="card-grid project-grid">
+          {projects.map((project, index) => (
+            <ProjectCard key={project.title} project={project} index={index} />
+          ))}
         </div>
-
-        <div className="card">
-          <img src={uiImage} alt="UI Design Project" className="project-img" />
-          <div className="card-content">
-            <h3>UI Design Project</h3>
-            <p>A design-focused UI challenge that demonstrates my ability to translate concepts into clean, user-friendly interfaces.</p>
-          </div>
-        </div>
-
-        <div className="card">
-          <img src={bakanteImage} alt="Portfolio Project" className="project-img" />
-          <div className="card-content">
-            <h3>Bakante</h3>
-            <p>A community-based web platform that connects local job seekers with nearby part-time and on-demand work opportunities, making hiring and job searching faster, easier, and more reliable.</p>
-          </div>
-        </div>
-
       </div>
-    </div>
-  </section>
-);
+    </section>
+  )
+}
 
 export default Projects
-
