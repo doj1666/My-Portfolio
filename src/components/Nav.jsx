@@ -13,29 +13,27 @@ function Nav() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   useEffect(() => {
-    function updateActiveSection() {
-      const middleOfScreen = window.innerHeight / 2
-      const scrolledToBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2
-      let currentSection = 'home'
+    // The root margin shrinks the viewport to a thin band just above the middle
+    // of the screen, so only one section can be "in view" at a time.
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id)
+          }
+        })
+      },
+      { rootMargin: '-45% 0px -50% 0px' }
+    )
 
-      navLinks.forEach((link) => {
-        const section = document.getElementById(link.id)
-        if (section && section.getBoundingClientRect().top <= middleOfScreen) {
-          currentSection = link.id
-        }
-      })
-
-      if (scrolledToBottom) {
-        currentSection = 'contact'
+    navLinks.forEach((link) => {
+      const section = document.getElementById(link.id)
+      if (section) {
+        observer.observe(section)
       }
+    })
 
-      setActiveSection(currentSection)
-    }
-
-    updateActiveSection()
-    window.addEventListener('scroll', updateActiveSection)
-
-    return () => window.removeEventListener('scroll', updateActiveSection)
+    return () => observer.disconnect()
   }, [])
 
   function toggleMenu() {

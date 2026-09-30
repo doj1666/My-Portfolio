@@ -1,7 +1,7 @@
 :root {
   --navy: #0f172a;
   --blue-deep: #1e3a8a;
-  --blue-action: #1d4ed8;
+  --blue: #1d4ed8;
   --sky: #38bdf8;
   --bg: #f8fafc;
   --bg-alt: #f1f5f9;
@@ -10,6 +10,13 @@
   --border: #e2e8f0;
   --on-dark: #ffffff;
   --on-dark-muted: #cbd5e1;
+
+  --blue-hover: color-mix(in srgb, var(--blue) 88%, var(--navy));
+  --blue-pressed: color-mix(in srgb, var(--blue) 76%, var(--navy));
+
+  --button-shadow-hover: 0 6px 16px color-mix(in srgb, var(--blue) 28%, transparent);
+  --button-focus-ring: var(--blue);
+  --button-transition: 200ms ease-out;
 }
 
 * {
@@ -31,7 +38,7 @@ body {
 
 a:focus-visible,
 button:focus-visible {
-  outline: 2px solid var(--blue-action);
+  outline: 2px solid var(--blue);
   outline-offset: 2px;
 }
 
@@ -90,6 +97,7 @@ button:focus-visible {
   color: var(--on-dark);
   text-decoration: none;
   font-weight: 500;
+  transition: color 0.2s ease-out;
 }
 
 .nav-link::after {
@@ -127,6 +135,23 @@ button:focus-visible {
   border: 0;
   border-radius: 8px;
   cursor: pointer;
+  transition: background-color var(--button-transition), transform var(--button-transition);
+}
+
+@media (hover: hover) {
+  .nav-toggle:hover {
+    background-color: var(--blue);
+  }
+}
+
+.nav-toggle:active {
+  background-color: var(--blue-pressed);
+  transform: scale(0.97);
+}
+
+.nav-toggle:focus-visible {
+  outline: 3px solid var(--sky);
+  outline-offset: 2px;
 }
 
 .nav-toggle-bar {
@@ -176,7 +201,7 @@ button:focus-visible {
   width: 56px;
   height: 4px;
   margin: 0.75rem auto 0;
-  background: var(--blue-action);
+  background: var(--blue);
   border-radius: 2px;
 }
 
@@ -259,48 +284,77 @@ button:focus-visible {
 .button {
   display: inline-block;
   padding: 0.9rem 2rem;
-  border: 2px solid var(--on-dark);
+  border: 2px solid transparent;
   border-radius: 999px;
+  font-family: inherit;
   font-weight: 600;
   font-size: 1rem;
+  line-height: 1.2;
   text-decoration: none;
-  transition: transform 0.3s ease-out;
+  cursor: pointer;
+  transition:
+    background-color var(--button-transition),
+    border-color var(--button-transition),
+    box-shadow var(--button-transition);
 }
 
-.button:hover {
-  transform: translateY(-3px);
+.button:focus-visible {
+  outline: 3px solid var(--button-focus-ring);
+  outline-offset: 2px;
 }
 
 .button-primary {
-  background: var(--blue-action);
-  border-color: var(--blue-action);
-  color: var(--on-dark);
-}
-
-.button-primary:hover {
-  background: var(--blue-deep);
-  border-color: var(--blue-deep);
-}
-
-.button-outline {
-  background: transparent;
+  background-color: var(--blue);
+  border-color: var(--blue);
   color: var(--on-dark);
 }
 
 .button-secondary {
-  background: transparent;
-  border-color: var(--blue-action);
-  color: var(--blue-action);
+  background-color: transparent;
+  border-color: var(--blue);
+  color: var(--blue);
 }
 
-.button-secondary:hover {
-  background: var(--blue-action);
+.button-on-dark {
+  border-color: var(--on-dark);
   color: var(--on-dark);
 }
 
-.button-small {
-  padding: 0.7rem 1.5rem;
-  font-size: 0.95rem;
+/* Hover styles only apply to real pointers, so a tap on a phone doesn't leave the button colored.
+   Secondary buttons with .button-no-fill keep their shadow but skip the blue fill and color change. */
+@media (hover: hover) {
+  .button-primary:hover {
+    background-color: var(--blue-hover);
+    border-color: var(--blue-hover);
+    box-shadow: var(--button-shadow-hover);
+  }
+
+  .button-secondary:hover {
+    box-shadow: var(--button-shadow-hover);
+  }
+
+  .button-secondary:not(.button-no-fill):hover {
+    background-color: var(--blue);
+    border-color: var(--blue);
+    color: var(--on-dark);
+  }
+}
+
+/* :active only lasts while the button is held down, so no color is kept after the click. */
+.button-primary:active {
+  background-color: var(--blue-pressed);
+  border-color: var(--blue-pressed);
+  box-shadow: none;
+}
+
+.button-secondary:active {
+  box-shadow: none;
+}
+
+.button-secondary:not(.button-no-fill):active {
+  background-color: var(--blue);
+  border-color: var(--blue);
+  color: var(--on-dark);
 }
 
 .about-content {
@@ -324,7 +378,7 @@ button:focus-visible {
 
 .about-text {
   flex: 1;
-  min-width: 300px;
+  min-width: min(100%, 300px);
   text-align: left;
 }
 
@@ -343,16 +397,62 @@ button:focus-visible {
   margin-top: 0.5rem;
 }
 
+.skills {
+  max-width: 1000px;
+  margin: 3.5rem auto 0;
+  text-align: left;
+}
+
+.skills-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-align: center;
+  color: var(--text);
+  margin-bottom: 1.5rem;
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  gap: 1.25rem;
+}
+
+.skill-group {
+  padding: 1.25rem 1.5rem;
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+}
+
+.skill-group-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 0.75rem;
+}
+
 .skill-list {
   justify-content: flex-start;
-  margin-top: 1.5rem;
+  margin-top: 0;
+}
+
+.skill-chip {
+  cursor: default;
+  transition: background-color var(--button-transition), color var(--button-transition);
+}
+
+@media (hover: hover) {
+  .skill-chip:hover {
+    background: var(--blue);
+    color: var(--on-dark);
+  }
 }
 
 .tag {
   padding: 0.3rem 0.8rem;
   border-radius: 999px;
-  background: color-mix(in srgb, var(--blue-action) 10%, transparent);
-  color: var(--blue-action);
+  background: color-mix(in srgb, var(--blue) 10%, transparent);
+  color: var(--blue);
   font-size: 0.85rem;
   font-weight: 600;
   line-height: 1.4;
@@ -379,9 +479,9 @@ button:focus-visible {
 
 .about-social-links .social-link {
   padding: 0.75rem;
-  border: 2px solid var(--blue-action);
+  border: 2px solid var(--blue);
   border-radius: 25px;
-  background: var(--blue-action);
+  background: var(--blue);
 }
 
 .about-social-links .social-link:hover {
@@ -427,7 +527,7 @@ button:focus-visible {
   inset: 0;
   z-index: 1;
   border-radius: 19px;
-  background: linear-gradient(90deg, var(--blue-deep), var(--blue-action), var(--sky)) top / 100% 4px no-repeat;
+  background: linear-gradient(90deg, var(--blue-deep), var(--blue), var(--sky)) top / 100% 4px no-repeat;
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.25s ease-out;
@@ -484,7 +584,7 @@ button:focus-visible {
   font-weight: 700;
   letter-spacing: -0.02em;
   margin-bottom: 0.5rem;
-  background: linear-gradient(135deg, var(--text), var(--blue-action));
+  background: linear-gradient(135deg, var(--text), var(--blue));
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -514,6 +614,11 @@ button:focus-visible {
   padding-top: 1.25rem;
 }
 
+.card-buttons .button {
+  padding: 0.65rem 1.4rem;
+  font-size: 0.95rem;
+}
+
 .service-icon {
   display: flex;
   align-items: center;
@@ -522,8 +627,8 @@ button:focus-visible {
   height: 56px;
   margin-bottom: 1.25rem;
   border-radius: 16px;
-  background: color-mix(in srgb, var(--blue-action) 10%, transparent);
-  color: var(--blue-action);
+  background: color-mix(in srgb, var(--blue) 10%, transparent);
+  color: var(--blue);
 }
 
 .service-icon svg {
@@ -593,8 +698,8 @@ button:focus-visible {
 }
 
 .footer-social .social-link:hover {
-  background: var(--blue-action);
-  border-color: var(--blue-action);
+  background: var(--blue);
+  border-color: var(--blue);
 }
 
 .footer-social .social-icon {
@@ -761,9 +866,12 @@ button:focus-visible {
     text-align: center;
   }
 
-  .skill-list,
   .about-social-links {
     justify-content: center;
+  }
+
+  .skill-group {
+    padding: 1rem 1.25rem;
   }
 
   .footer {
@@ -843,7 +951,7 @@ button:focus-visible {
     transform: none;
   }
 
-  .button:hover,
+  .nav-toggle:active,
   .card:hover,
   .card:hover .card-image,
   .social-link:hover {

@@ -33,7 +33,7 @@ const projects = [
   },
   {
     title: 'Portfolio Website',
-    image: '/preview.png',
+    image: '/preview1.png',
     imageAlt: 'Portfolio Website',
     description: 'This personal portfolio site, built with React and Vite and deployed on Vercel.',
     tags: ['React', 'Vite', 'Vercel'],

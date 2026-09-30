@@ -1,4 +1,5 @@
 import meImage from './me.jpg'
+import Button from './Button'
 
 function Home() {
   return (
@@ -9,8 +10,8 @@ function Home() {
           <h1 className="hero-name">Diojeh Mer Villaluna</h1>
           <p className="hero-role">Web Developer and UI/UX Designer</p>
           <div className="hero-buttons">
-            <a href="#projects" className="button button-primary">View Projects</a>
-            <a href="#about" className="button button-outline">About Me</a>
+            <Button variant="primary" href="#projects">View Projects</Button>
+            <Button variant="secondary" href="#about" className="button-on-dark" noFill>About Me</Button>
           </div>
         </div>
 

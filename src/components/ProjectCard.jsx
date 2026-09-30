@@ -1,4 +1,5 @@
 import AnimatedCard from './AnimatedCard'
+import Button from './Button'
 
 function ProjectCard({ project, index }) {
   return (
@@ -20,24 +21,10 @@ function ProjectCard({ project, index }) {
 
           <div className="card-buttons">
             {project.liveUrl && (
-              <a
-                href={project.liveUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="button button-primary button-small"
-              >
-                Live Demo
-              </a>
+              <Button variant="primary" href={project.liveUrl}>Live Demo</Button>
             )}
             {project.githubUrl && (
-              <a
-                href={project.githubUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="button button-secondary button-small"
-              >
-                GitHub
-              </a>
+              <Button variant="secondary" href={project.githubUrl}>GitHub</Button>
             )}
           </div>
         </div>
