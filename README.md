@@ -4,7 +4,7 @@ Personal portfolio website built to present my introduction, background, project
 
 Live site: https://diojeh.vercel.app/
 
-![Portfolio preview](public/preview.png)
+![Portfolio preview](public/preview1.png)
 
 ## Overview
 
