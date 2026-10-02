@@ -13,8 +13,7 @@ function Nav() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   useEffect(() => {
-    // The root margin shrinks the viewport to a thin band just above the middle
-    // of the screen, so only one section can be "in view" at a time.
+    
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {

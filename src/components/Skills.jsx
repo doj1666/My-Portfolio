@@ -1,25 +1,53 @@
 import { motion, useReducedMotion } from 'framer-motion'
 
+function deviconUrl(name) {
+  return `https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${name}/${name}-original.svg`
+}
+
 const skillGroups = [
   {
     category: 'Frontend',
-    skills: ['HTML', 'CSS', 'JavaScript', 'React', 'Vite', ],
+    skills: [
+      { name: 'HTML', logo: deviconUrl('html5') },
+      { name: 'CSS', logo: deviconUrl('css3') },
+      { name: 'JavaScript', logo: deviconUrl('javascript') },
+      { name: 'React', logo: deviconUrl('react') },
+      { name: 'Vite', logo: deviconUrl('vitejs') },
+    ],
   },
   {
     category: 'Backend and Database',
-    skills: ['Node.js', 'Express', 'MongoDB'],
+    skills: [
+      { name: 'Node.js', logo: deviconUrl('nodejs') },
+      { name: 'Express', logo: deviconUrl('express') },
+      { name: 'MongoDB', logo: deviconUrl('mongodb') },
+    ],
   },
   {
     category: 'UI/UX Design',
-    skills: ['Figma', 'Wireframing', 'Prototyping', 'Responsive Design'],
+    skills: [
+      { name: 'Figma', logo: deviconUrl('figma') },
+      { name: 'Wireframing' },
+      { name: 'Prototyping' },
+      { name: 'Responsive Design' },
+    ],
   },
   {
     category: 'Tools and Deployment',
-    skills: ['Git', 'GitHub', 'Vercel', 'VS Code'],
+    skills: [
+      { name: 'Git', logo: deviconUrl('git') },
+      { name: 'GitHub', logo: deviconUrl('github') },
+      { name: 'Vercel', logo: deviconUrl('vercel') },
+      { name: 'VS Code', logo: deviconUrl('vscode') },
+    ],
   },
   {
     category: 'IT Support',
-    skills: ['Troubleshooting', 'Hardware and Software Support', 'Network Basics'],
+    skills: [
+      { name: 'Troubleshooting' },
+      { name: 'Hardware and Software Support' },
+      { name: 'Network Basics' },
+    ],
   },
 ]
 
@@ -58,7 +86,12 @@ function Skills() {
             <h4 className="skill-group-title">{group.category}</h4>
             <ul className="tag-list skill-list" aria-label={`${group.category} skills`}>
               {group.skills.map((skill) => (
-                <li key={skill} className="tag skill-chip">{skill}</li>
+                <li key={skill.name} className="tag skill-chip">
+                  {skill.logo && (
+                    <img src={skill.logo} alt={skill.name} className="skill-logo" width="18" height="18" />
+                  )}
+                  <span>{skill.name}</span>
+                </li>
               ))}
             </ul>
           </motion.div>

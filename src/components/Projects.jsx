@@ -1,6 +1,7 @@
 import awesomeImage from './awesome.jpg'
 import uiImage from './ui.jpg'
 import bakanteImage from './bakante.png'
+import teechImage from './teech.png'
 import ProjectCard from './ProjectCard'
 
 const projects = [
@@ -38,6 +39,14 @@ const projects = [
     description: 'This personal portfolio site, built with React and Vite and deployed on Vercel.',
     tags: ['React', 'Vite', 'Vercel'],
     liveUrl: 'https://diojeh.vercel.app/',
+  },
+  {
+    title: 'Teech',
+    image: teechImage,
+    imageAlt: 'Teech',
+    description: 'A web platform for students and faculty to schedule, manage, and track consultation appointments, with separate dashboards, availability calendars, approval workflows, and notifications.',
+    tags: ['Next.js', 'React', 'TypeScript', 'Supabase', 'PostgreSQL'],
+    liveUrl: 'https://teech-app.vercel.app/welcome',
   },
 ]
 

@@ -437,8 +437,18 @@ button:focus-visible {
 }
 
 .skill-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 1.8rem;
   cursor: default;
   transition: background-color var(--button-transition), color var(--button-transition);
+}
+
+.skill-logo {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
 }
 
 @media (hover: hover) {
@@ -502,7 +512,14 @@ button:focus-visible {
 }
 
 .project-grid {
-  grid-auto-rows: 1fr;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.project-grid .card-wrapper {
+  flex: 0 0 calc((100% - 48px) / 3);
+  height: auto;
 }
 
 .card-wrapper {
@@ -786,8 +803,8 @@ button:focus-visible {
 }
 
 @media (max-width: 900px) {
-  .project-grid {
-    grid-template-columns: repeat(2, 1fr);
+  .project-grid .card-wrapper {
+    flex-basis: calc((100% - 24px) / 2);
   }
 }
 
@@ -897,9 +914,8 @@ button:focus-visible {
 }
 
 @media (max-width: 600px) {
-  .project-grid {
-    grid-template-columns: 1fr;
-    grid-auto-rows: auto;
+  .project-grid .card-wrapper {
+    flex-basis: 100%;
   }
 }
 
