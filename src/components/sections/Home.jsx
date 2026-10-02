@@ -1,5 +1,5 @@
-import meImage from './me.jpg'
-import Button from './Button'
+import meImage from '../../assets/images/me.jpg'
+import Button from '../ui/Button'
 
 function Home() {
   return (

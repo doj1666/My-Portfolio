@@ -1,11 +1,11 @@
 import { useEffect } from 'react'
-import Nav from './components/Nav'
-import Home from './components/Home'
-import About from './components/About'
-import Projects from './components/Projects'
-import Services from './components/Services'
-import Contact from './components/Contact'
-import Footer from './components/Footer'
+import Nav from './components/layout/Nav'
+import Home from './components/sections/Home'
+import About from './components/sections/About'
+import Projects from './components/sections/Projects'
+import Services from './components/sections/Services'
+import Contact from './components/sections/Contact'
+import Footer from './components/layout/Footer'
 
 function App() {
   useEffect(() => {

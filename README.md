@@ -37,8 +37,12 @@ npm run dev
 
 - `src/App.jsx` puts the page sections together
 - `src/main.jsx` is the entry point of the app
-- `src/components/` contains the Home, About, Projects, Services, Nav, and Footer sections
-- `public/` stores images and assets
+- `src/index.css` holds the site styles
+- `src/components/layout/` contains the Nav and Footer
+- `src/components/sections/` contains the Home, About, Projects, Services, Skills, and Contact sections
+- `src/components/ui/` contains reusable pieces: Button, AnimatedCard, ProjectCard, ServiceCard, and SocialLinks
+- `src/assets/images/` stores the images imported by the components
+- `public/` stores static files served as-is, such as the favicon and preview images
 - `vercel.json` and `vite.config.js` hold the deployment and build settings
 
 ## Purpose

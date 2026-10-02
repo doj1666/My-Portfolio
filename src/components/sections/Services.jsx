@@ -1,4 +1,4 @@
-import ServiceCard from './ServiceCard'
+import ServiceCard from '../ui/ServiceCard'
 
 const services = [
   {

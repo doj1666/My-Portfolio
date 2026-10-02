@@ -1,4 +1,4 @@
-import SocialLinks from './SocialLinks'
+import SocialLinks from '../ui/SocialLinks'
 
 const footerLinks = [
   { id: 'home', label: 'Home' },
